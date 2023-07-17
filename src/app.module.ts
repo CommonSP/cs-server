@@ -1,15 +1,16 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { JwtModule } from '@nestjs/jwt'
+import { ServeStaticModule } from '@nestjs/serve-static'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { join } from 'path'
 import * as process from 'process'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { AuthModule } from './auth/auth.module'
 import { ProductsModule } from './products/products.module'
+import { AppGateway } from './testws'
 import { UserModule } from './user/user.module'
-import {AppGateway} from "./testws";
-
 @Module({
 	imports: [
 		ConfigModule.forRoot(),
@@ -29,7 +30,9 @@ import {AppGateway} from "./testws";
 			secret: process.env.SECRET,
 			signOptions: { expiresIn: '60d' },
 		}),
-
+		ServeStaticModule.forRoot({
+			rootPath: join(__dirname, '..', 'client', 'dist', 'cs-front'),
+		}),
 		UserModule,
 		AuthModule,
 		ProductsModule,
