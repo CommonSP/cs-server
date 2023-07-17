@@ -8,6 +8,7 @@ import { AppService } from './app.service'
 import { AuthModule } from './auth/auth.module'
 import { ProductsModule } from './products/products.module'
 import { UserModule } from './user/user.module'
+import {AppGateway} from "./testws";
 
 @Module({
 	imports: [
@@ -34,6 +35,6 @@ import { UserModule } from './user/user.module'
 		ProductsModule,
 	],
 	controllers: [AppController],
-	providers: [AppService],
+	providers: [AppService, AppGateway],
 })
 export class AppModule {}

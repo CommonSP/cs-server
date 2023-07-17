@@ -1,13 +1,1 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
-import { Product } from './product.entity'
-
-@Injectable()
-export class ProductService {
-	constructor(@InjectRepository(Product) private productRepository: Repository<Product>) {}
-
-	getProducts() {
-		return this.productRepository.findAndCount({ take: 10, skip: 0 })
-	}
-}
+import { Injectable } from '@nestjs/common'import { InjectRepository } from '@nestjs/typeorm'import { Like, MoreThan, Repository } from 'typeorm'import { GetProductsDto } from './dto/get-products-dto'import { Product } from './product.entity'@Injectable()export class ProductService {	constructor(@InjectRepository(Product) private productRepository: Repository<Product>) {}	getProducts(params: GetProductsDto) {		switch (params.mainCategory) {			case 'Поворотный':				return this.productRepository.findAndCount({					where: {						vrash_isliva: params.mainCategory,						upravlenie: Like(`%${params.subCategory}%`),						price: MoreThan(0),					},					skip: Number(params.offset),					take: Number(params.limit),				})			default:				return []		}	}	getProductById(id: string) {		return this.productRepository.findOneBy({ guid: id })	}}
