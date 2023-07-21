@@ -1,0 +1,1 @@
+import { Module } from '@nestjs/common'import { SaleModule } from '../sale/sale.module'import { FilesController } from './files.controller'import {FilesService} from "./services/files.service";@Module({	imports: [SaleModule],	providers: [FilesService],	controllers: [FilesController],	exports: [],})export class FilesModule {}

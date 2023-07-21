@@ -1,0 +1,1 @@
+import { IsNotEmpty } from 'class-validator';export class SaleDto {	@IsNotEmpty()	name: string	@IsNotEmpty()	image: string	@IsNotEmpty()	discount: number	products: string[]}

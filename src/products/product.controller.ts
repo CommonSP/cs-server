@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common'
+import {Body, Controller, Get, Param, Put, Query} from '@nestjs/common'
 import { GetProductsDto } from './dto/get-products-dto'
 import { ProductService } from './product.service'
 
@@ -14,7 +14,16 @@ export class ProductController {
 
 	@Get(':id')
 	async getProductById(@Param('id') id: string) {
-		const product = await this.productService.getProductById(id)
-		return product
+		return await this.productService.getProductById(id)
+	}
+
+	@Get('article/:article')
+	async getProductByArticle(@Param('article') article: string) {
+		return await this.productService.getProductByArticle(article)
+	}
+
+	@Put(':id')
+	async updateProductById(@Param('id') id: string, @Body('data') data: any) {
+		return await this.productService.updateProductById(id, data)
 	}
 }
