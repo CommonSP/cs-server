@@ -9,8 +9,6 @@ async function bootstrap() {
 	await app.enableCors()
 	await app.useGlobalPipes(new ValidationPipe())
 	await app.listen(port)
-
-	console.log(`Server started on port: ${port}`)
 }
 
 bootstrap()

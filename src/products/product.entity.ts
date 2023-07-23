@@ -70,4 +70,6 @@ export class Product {
 	category?: string
 	@Column({ nullable: true })
 	dlina_isliva?: string
+	@Column({ nullable: true })
+	main_image?: string
 }
