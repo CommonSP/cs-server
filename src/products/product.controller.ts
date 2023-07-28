@@ -19,7 +19,8 @@ export class ProductController {
 
 	@Get('article/:article')
 	async getProductByArticle(@Param('article') article: string) {
-		return await this.productService.getProductByArticle(article)
+		const [products, count] = await this.productService.getProductByArticle(article)
+		return products
 	}
 
 	@Put(':id')
