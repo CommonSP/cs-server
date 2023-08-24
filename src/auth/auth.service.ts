@@ -35,7 +35,7 @@ export class AuthService {
     async registrationClient(newClient: NewClientDto) {
         return this.mailerService
             .sendMail({
-                to: 'Evgeniy2000sa@yandex.ru',
+                to: 'info@cs-trade.com',
                 from: 'cs-server-mail@mail.ru',
                 subject: 'Регистрация нового пользователя',
                 html: `
